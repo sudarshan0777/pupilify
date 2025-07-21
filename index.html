@@ -25,6 +25,7 @@
             --dark-color: #2c3e50;
             --light-color: #f8f9fa;
             --text-color: #555;
+            --success-color: #2ecc71;
             --gradient: linear-gradient(45deg, var(--primary-color), #ff8a80);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
@@ -198,7 +199,7 @@
             transition: all 0.4s ease;
         }
 
-        /* --- ✨ HERO SECTION (MODIFIED FOR CENTERING) --- */
+        /* --- ✨ HERO SECTION --- */
         #home {
             min-height: 100vh;
             display: flex;
@@ -237,11 +238,51 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-
-        /* ✨ FEATURES SECTION */
-        #features {
+        
+        /* --- ⭐ ABOUT SECTION (NEW) --- */
+        #about {
             background-color: #fff;
         }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .future-perks {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .future-perks li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .future-perks .fas {
+            color: var(--success-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        /* ✨ FEATURES SECTION */
         .feature-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -273,6 +314,9 @@
         }
 
         /* 🚀 HOW IT WORKS SECTION */
+        #how-it-works {
+             background-color: #fff;
+        }
         .how-it-works-steps {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -283,7 +327,7 @@
         .step .icon {
             font-size: 2.5rem;
             color: var(--primary-color);
-            background: #fff;
+            background: var(--light-color);
             width: 90px;
             height: 90px;
             line-height: 90px;
@@ -354,6 +398,19 @@
         }
 
         /* 📱 RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+             .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+             }
+             .about-image {
+                margin-bottom: 30px;
+             }
+             .future-perks li {
+                align-items: center;
+                text-align: left;
+             }
+        }
         @media (max-width: 768px) {
             h2 { font-size: 2.2rem; }
 
@@ -415,8 +472,10 @@
             <a href="#home" class="logo">Pupilify</a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#features" class="nav-link">Features</a></li>
                 <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="/blog" target="_blank" class="nav-link">Blog</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -437,6 +496,26 @@
                     <h1>Learn What Matters. <br>Built for You.</h1>
                     <p>Our AI-powered platform creates a unique learning journey based on your passions, helping you master skills for the future.</p>
                     <a href="#features" class="btn">Discover Your Path</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="reveal">
+            <div class="container">
+                <h2>How Pupilify Shapes Your Child's Future?</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://www.svgrepo.com/show/452093/growth.svg" alt="A child's bright future with Pupilify">
+                    </div>
+                    <div class="about-text">
+                        <h3>Beyond Grades, We Build Futures</h3>
+                        <p>Traditional education often teaches children *what* to think. Pupilify teaches them *how* to think. We go beyond the standard curriculum to prepare your child for a world that demands creativity, adaptability, and real-world skills.</p>
+                        <ul class="future-perks">
+                            <li><i class="fas fa-check-circle"></i> <strong>Fosters Critical Thinking:</strong> Our AI encourages problem-solving and curiosity, not just memorization.</li>
+                            <li><i class="fas fa-cogs"></i> <strong>Builds Future-Ready Skills:</strong> From coding to digital arts, students learn skills that are in high demand.</li>
+                            <li><i class="fas fa-user-plus"></i> <strong>Nurtures Confidence:</strong> By learning at their own pace and mastering topics they love, students build unshakable self-confidence.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -521,7 +600,7 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <p>&copy; 2025 Pupilify. All Rights Reserved. Built with ❤️ for the next generation.</p>
+            <p>&copy; 2025 Pupilify. All Rights Reserved. Built with ❤️ By Sudarshan Dalavi.</p>
         </div>
     </footer>
 
@@ -547,10 +626,13 @@
 
             // Close menu when a link is clicked
             navLinkItems.forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                });
+                // Don't close menu for external links like the blog
+                if (!link.hasAttribute('target')) {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                }
             });
 
             // --- Active Nav Link on Scroll ---
@@ -558,14 +640,15 @@
                 let current = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 60) {
+                    if (pageYOffset >= sectionTop - 150) { // adjusted offset for better accuracy
                         current = section.getAttribute('id');
                     }
                 });
 
                 navLinkItems.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
+                    // Check if the link's href contains the current section's id
+                    if (link.getAttribute('href').includes(current) && current) {
                         link.classList.add('active');
                     }
                 });
