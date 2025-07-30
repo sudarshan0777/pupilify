@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Pupilify Blog - AI, Learning, and Future of Education</title>
+    <meta name="description" content="Explore articles and insights from Pupilify on AI-powered education, personalized learning strategies, and preparing students for the future.">
+    <meta name="keywords" content="AI education blog, learning strategies, future of education, K-12 learning, ed-tech insights">
+    <link rel="canonical" href="https://pupilify.example.com/blog.html"> <meta property="og:title" content="The Pupilify Blog">
+    <meta property="og:description" content="Insights on AI, Learning, and the Future of Education.">
+    <meta property="og:image" content="https://i.imgur.com/your-image.png"> <meta property="og:url" content="https://pupilify.example.com/blog.html"> <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 🎨 THEME & GENERAL STYLES (Copied from main page for consistency) */
+        :root {
+            --primary-color: #f06292;
+            --secondary-color: #80DEEA; /* Soft Teal */
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --text-color: #555;
+            --success-color: #2ecc71;
+            --gradient: linear-gradient(45deg, var(--primary-color), #ff8a80);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1140px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        h1, h2, h3 {
+            color: var(--dark-color);
+            font-weight: 700;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            letter-spacing: -1px;
+        }
+        
+        /* 🖥️ HEADER & NAVIGATION (Same as main page) */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .header.sticky {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding-bottom: 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { /* 'active' class for current page */
+            color: var(--primary-color);
+        }
+        
+        .nav-links a.active::after {
+            width: 60%;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            transition: width 0.4s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .hamburger .line {
+            width: 30px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin: 6px 0;
+            transition: all 0.4s ease;
+        }
+
+        /* 📖 BLOG PAGE STYLES */
+        .blog-hero {
+            text-align: center;
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background-color: #fff;
+        }
+        .blog-hero h1 {
+            font-size: 3.5rem;
+            letter-spacing: -2px;
+        }
+        .blog-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 10px auto 0;
+            color: var(--text-color);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+        }
+        
+        .blog-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-category {
+            display: inline-block;
+            background: var(--primary-light, #fce4ec);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        .card-meta a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .card-meta a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 🦶 FOOTER (Same as main page) */
+        footer {
+            background: var(--dark-color);
+            color: #aeb6bf;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        .social-links a {
+            color: #fff;
+            margin: 0 12px;
+            font-size: 1.6rem;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover { color: var(--primary-color); }
+        footer p { margin-top: 20px; font-size: 0.9rem; }
+        
+        /* 📱 RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .blog-hero h1 { font-size: 2.5rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s ease-in-out;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 25px 0; }
+            .nav-links a { font-size: 1.2rem; }
+
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            .hamburger.active .line:nth-child(1) { transform: rotate(-45deg) translate(-7px, 7px); }
+            .hamburger.active .line:nth-child(2) { opacity: 0; }
+            .hamburger.active .line:nth-child(3) { transform: rotate(45deg) translate(-7px, -7px); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <nav class="container navbar">
+            <a href="index.html" class="logo">Pupilify</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#features" class="nav-link">Features</a></li>
+                <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="/blog" class="nav-link active">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-hero">
+            <div class="container">
+                <h1>The Pupilify Blog</h1>
+                <p>Insights on AI, Learning, and the Future of Education</p>
+            </div>
+        </section>
+
+        <section id="blog-posts">
+            <div class="container">
+                <div class="blog-grid">
+
+                    <div class="blog-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1516542076529-1ea3854896f2?q=80&w=2071" alt="Laptop with code on screen">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Future Skills</span>
+                            <h3>Why Every Child Should Learn to Code in the AI Era</h3>
+                            <p>Discover the cognitive benefits and future opportunities that learning to code provides for K-12 students.</p>
+                            <div class="card-meta">
+                                <span>By Sudarshan Dalavi | July 28, 2025</span>
+                                <a href="#">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2070" alt="Student raising hand in class">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Personalized Learning</span>
+                            <h3>Moving Beyond One-Size-Fits-All Education</h3>
+                            <p>How personalized learning paths are unlocking student potential and fostering a genuine love for learning.</p>
+                             <div class="card-meta">
+                                <span>By Sudarshan Dalavi | July 25, 2025</span>
+                                <a href="#">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=1974" alt="Person painting on a tablet">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Creativity & AI</span>
+                            <h3>Can AI Co-Exist with Creativity? Yes, and Here's How.</h3>
+                            <p>We explore how AI tools can act as a catalyst for creative expression in digital arts, music, and writing.</p>
+                             <div class="card-meta">
+                                <span>By Sudarshan Dalavi | July 22, 2025</span>
+                                <a href="#">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2025 Pupilify. All Rights Reserved. Built with ❤️ By Sudarshan Dalavi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simplified script for the blog page
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('header');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            // --- Sticky Header ---
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('sticky', window.scrollY > 50);
+            });
+
+            // --- Hamburger Menu ---
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
